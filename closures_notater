@@ -1,0 +1,44 @@
+Closures:
+
+- First class function + environment.
+
+
+- Har lexical scope: Innholdet til en funksjon evalueres i miljøet der funksjonen ble definert. Ikke der funksjonen kalles. 
+
+	* Eksempel:
+	val x = 1
+	fun add y = y + x
+
+	val x = 2
+	val y = 3
+
+	val z = add(x+y)  // 2 + 3 + 1 = 6
+
+	Funksjonen bruker verdien som x hadde da funksjonen ble definert.
+	(Med dynamic scope hadde vi fått 7)
+
+	også mange flere idiomer som er avhengig av lexical scope
+
+
+- En closure tar med variabel bindingene som ikke spessifiseres i selve funksjonen. 
+Har alt den trenger for å regne ut resultatet utifra argumentene. Closure ~= "Closed".
+
+
+- I eksempelet over: 
+	* fun add y = y + x bindes til en clojure
+	* fx y => y + x
+	* environment inneholder [x=1]
+
+
+- Hvor bruker vi closures: map, filter, fold osv....
+	Noen eksempler:
+
+	fun allGreaterThan (xs,n) =  filter (fn x => x > n, xs)
+
+	allGreaterThan([1,2,3,4,5], 3)
+
+	(Når den anonyme funksjonen i filter kalles må den slå opp i sin environment for å finne ut hva n skal være.)
+
+	...
+
+
