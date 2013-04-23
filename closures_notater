@@ -3,7 +3,7 @@ Closures:
 - First class function + environment.
 
 
-- Har lexical scope: Innholdet til en funksjon evalueres i miljøet der funksjonen ble definert. Ikke der funksjonen kalles. 
+- Har lexical scope: Innholdet til en funksjon evalueres i miljøet der funksjonen ble definert. Ikke der funksjonen kalles.
 
 	* Eksempel:
 	val x = 1
@@ -20,11 +20,11 @@ Closures:
 	også mange flere idiomer som er avhengig av lexical scope
 
 
-- En closure tar med variabel bindingene som ikke spessifiseres i selve funksjonen. 
+- En closure tar med variabel bindingene som ikke spessifiseres i selve funksjonen.
 Har alt den trenger for å regne ut resultatet utifra argumentene. Closure ~= "Closed".
 
 
-- I eksempelet over: 
+- I eksempelet over:
 	* fun add y = y + x bindes til en clojure
 	* fx y => y + x
 	* environment inneholder [x=1]

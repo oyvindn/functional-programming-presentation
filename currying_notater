@@ -1,0 +1,35 @@
+Currying:
+
+  - Bruker clojures og lexical scope
+
+
+  - F.eks. istedet for å ha en funksjon som tar inn 2 argumenter -> en funksjon tar inn et argument og returnerer en funksjon som tar inn det andre argumentet.
+
+    erlang eksempel:
+
+    is_sorted(X) ->
+      fun(Y) ->
+        fun(Z) ->
+          (X < Y) and (Y < Z)
+        end
+      end.
+
+    ((is_sorted(5))(6))(7). // true
+    is_sorted(5)            // #Fun<...>
+
+
+    fun x => fn y => fn z => z >= y andalso y >= x
+
+    sorted 5 4 3 // true
+
+    * Syntactic sugar: fun sorted x y z = z >= y andalso y >= x
+
+    - Alle funksjoner har bare et argument i Haskell og SML. Viser eksempler?
+
+
+  - Partial application:
+
+    fun range i j = if i > j then [] else i :: range (i+1) j
+
+    val countup = range 1
+
