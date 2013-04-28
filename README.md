@@ -1,4 +1,4 @@
 functional-programming-presentation
 ===================================
 
-Presentasjon for faggruppen Programmingsspråk
+Presentasjon for faggruppen Programmeringsspråk

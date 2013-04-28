@@ -21,13 +21,29 @@ class: center, middle
 
  ----
 
-* Closures
+* Functional Programming
 
-* Currying
+* Idioms
 
-* Options
+  * Closures
 
-* List comprehensions
+  * Currying
+
+  * Options
+
+  * List comprehensions
+
+---
+
+<!-- Into: Functional Programming -->
+
+# Functional Programming
+ ---
+- **Only** *pure functions*
+
+- **No** *side effects*
+
+- *Referential transparency*
 
 ---
 <!-- Closures -->
@@ -192,6 +208,108 @@ class: center, middle
 
 ---
 
+<!-- Options -->
+
+# Option
+ ---
+
+---
+
+# Option
+ ---
+- Feilhåndtering uten bruk av exceptions
+
+---
+
+# Option
+ ---
+- Feilhåndtering uten bruk av exceptions
+
+- I Scala er Option implementert som en parameterisert type : Option[A]
+
+```scala
+	sealed trait Option[+A]
+	case class Some[+A](get: A) extends Option[A]
+	case object None extends Option[Nothing]
+```
+
+---
+
+# Option
+ ---
+- Feilhåndtering uten bruk av exceptions
+
+- I Scala er Option implementert som en parameterisert type : Option[A]
+
+```scala
+	sealed trait Option[+A]
+	case class Some[+A](get: A) extends Option[A]
+	case object None extends Option[Nothing]
+```
+
+- Option kan sees på som en liste som kan holde på maksimalt ett element, og som har mye av den samme funksjonaliteten som en liste.
+
+  - map, flatMap, filter, exists, foreach, head, tail, isEmpty, osv...
+
+---
+
+# Option
+ ---
+- Feilhåndtering uten bruk av exceptions
+
+- I Scala er Option implementert som en parameterisert type : Option[A]
+
+```scala
+	sealed trait Option[+A]
+	case class Some[+A](get: A) extends Option[A]
+	case object None extends Option[Nothing]
+```
+
+- Option kan sees på som en liste som kan holde på maksimalt ett element, og som har mye av den samme funksjonaliteten som en liste.
+
+  - map, flatMap, filter, exists, foreach, head, tail, isEmpty, osv...
+
+---
+
+# Option
+ ---
+- Den mest idiomatiske måten å benytte en Option er å behandle den som en collection eller monad, og bruke map, flatMap, filter eller foreach.
+
+```scala
+	val avdeling: String =
+		ansatteliste.get("Øyvind Nerbråten")
+			.map(_.avdeling)
+			.filter(_ != "BMC")
+			.getOrElse("BEKK")
+```
+
+---
+
+# Option
+ ---
+- Den mest idiomatiske måten å benytte en Option er å behandle den som en collection eller monad, og bruke map, flatMap, filter eller foreach.
+
+```scala
+	val avdeling: String =
+		ansatteliste.get("Øyvind Nerbråten")
+			.map(_.avdeling)
+			.filter(_ != "BMC")
+			.getOrElse("BEKK")
+```
+
+- Støtter også eksplisitt pattern matching
+
+```scala
+	val minAvdeling: Option[String] = 
+		ansatteliste.get("Øyvind Nerbråten").map(_.avdeling) match {
+			case Some("BMC") => "Bekk Management Consulting"
+			case Some(x) => x
+			case None => "BEKK"
+		}
+	
+```
+
+---
 
     </textarea>
     <div id="slideshow"></div>

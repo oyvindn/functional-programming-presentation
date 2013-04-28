@@ -1,0 +1,8 @@
+Referential transparency: 
+	
+	In any program, the expression can be replaced by its result without changing the meaning of the program.
+
+
+Pure functions: 
+	
+	We say that a function is pure if its body is RT, assuming RT inputs.

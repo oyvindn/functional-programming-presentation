@@ -1,0 +1,26 @@
+Option:
+
+- Feilhåndtering uten exceptions
+	- Exceptions brukes kun hvis feilen er ugjenopprettlig (no side effects!)
+
+- I Scala er Option implementert som en parameterisert type; Option[A]
+	- Nothing er en subtype av alle typer
+
+- Option er en abstrakt type med 2 muligheter:
+	- Hvis definert : Some
+	- Hvis udefinert : None
+
+- Reflekterer muligheten ved at resultatet ikke alltid er definert.
+
+- Ingen flere NullpointerExceptions!
+
+- Monad
+
+- Pattern matching
+
+- Lister : headOption og lastOption
+
+
+# Haskel:
+- I Haskell kalles option typen for Maybe
+- Definert som Maybe x = Just x | Nothing
