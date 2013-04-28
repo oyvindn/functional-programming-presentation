@@ -30,20 +30,163 @@ class: center, middle
 * List comprehensions
 
 ---
+<!-- Closures -->
+
+# Closures
+
+ ----
+---
 
 # Closures
 
  ----
 
-- First class function + environment.
+- Består av:
+    - First class function
+    - Environment (Tabell av frie variabler)
+
+---
+
+# Closures
+
+ ----
+
+- Består av:
+    - First class function
+    - Environment (Tabell av frie variabler)
+
+- Lexical scope: Innholdet til en funksjon evalueres i miljøet der funksjonen ble definert. Ikke der funksjonen kalles.
+---
+
+# Closures
+
+ ----
+
+- Består av:
+    - First class function
+    - Environment (Tabell av frie variabler)
 
 - Lexical scope: Innholdet til en funksjon evalueres i miljøet der funksjonen ble definert. Ikke der funksjonen kalles.
 
-...
 
-```erlang
-test(S) ->
-  "Erlang syntax highlighting".
+
+```SML
+
+  val x = 1
+  fun add y = y + x
+
+  val x = 2
+  val y = 3
+
+  val z = add(x+y)  // 2 + 3 + 1 = 6
+
+```
+
+---
+
+# Closures
+
+ ----
+
+- Består av:
+    - First class function
+    - Environment (Tabell av frie variabler)
+
+- Lexical scope: Innholdet til en funksjon evalueres i miljøet der funksjonen ble definert. Ikke der funksjonen kalles.
+
+
+
+```SML
+
+  val x = 1
+  fun add y = y + x // free variables: x
+
+  val x = 2
+  val y = 3
+
+  val z = add(x+y)  // 2 + 3 + 1 = 6
+
+```
+
+---
+
+# Closures
+
+ ----
+
+- Består av:
+    - First class function
+    - Environment (Tabell av frie variabler)
+
+- Lexical scope: Innholdet til en funksjon evalueres i miljøet der funksjonen ble definert. Ikke der funksjonen kalles.
+
+
+
+```SML
+
+  val x = 1
+  fun add y = y + x // free variables: x
+
+  val x = 2
+  val y = 3
+
+  val z = add(x+y)  // 2 + 3 + 1 = 6
+
+```
+
+- Closure ~= Closed
+
+---
+
+# Closures
+
+ ----
+
+- Brukes overalt. (map, filter, reduce, osv...)
+
+---
+
+# Closures
+
+ ----
+
+- Brukes overalt. (map, filter, reduce, osv...)
+
+- Flere eksempler:
+
+```SML
+
+  fun allGreaterThan (xs,n) =  filter (fn x => x > n, xs)
+
+  allGreaterThan([1,2,3,4,5], 3) // 4, 5
+
+```
+---
+
+# Closures
+
+ ----
+
+- Brukes overalt. (map, filter, reduce, osv...)
+
+- Flere eksempler:
+
+```SML
+
+  fun allGreaterThan (xs,n) =  filter (fn x => x > n, xs)
+
+  allGreaterThan([1,2,3,4,5], 3) // 4, 5
+
+```
+
+```SML
+
+  fun numberInRange (xs,lo,hi) =
+    fold ((fn (x,y) => x + (if y >= lo andalso y &#60;= hi then 1 else 0)),
+           0,
+           xs)
+
+  numberInRange([1,2,3,4,5], 2, 4) // 2, 3, 4
 
 ```
 

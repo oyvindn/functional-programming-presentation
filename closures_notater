@@ -39,6 +39,5 @@ Har alt den trenger for å regne ut resultatet utifra argumentene. Closure ~= "C
 
 	(Når den anonyme funksjonen i filter kalles må den slå opp i sin environment for å finne ut hva n skal være.)
 
-	...
 
-
+- Clojures begynner også å bli vanlig i Objekt orientert språk... ruby, java 8, ...
