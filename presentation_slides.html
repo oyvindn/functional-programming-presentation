@@ -27,9 +27,9 @@ class: center, middle
 
   * Closures
 
-  * Currying
-
   * Options
+
+  * Currying
 
   * List comprehensions
 
@@ -300,17 +300,209 @@ class: center, middle
 - Støtter også eksplisitt pattern matching
 
 ```scala
-	val minAvdeling: Option[String] = 
+	val minAvdeling: Option[String] =
 		ansatteliste.get("Øyvind Nerbråten").map(_.avdeling) match {
 			case Some("BMC") => "Bekk Management Consulting"
 			case Some(x) => x
 			case None => "BEKK"
 		}
-	
+
 ```
 
 ---
 
+
+
+
+
+<!-- Currying -->
+# Currying
+ ---
+---
+
+# Currying
+ ---
+- Å skrive en funksjon slik at den kan kalles som en "chain" av flere funksjoner.
+---
+
+# Currying
+ ---
+- Å skrive en funksjon slik at den kan kalles som en "chain" av flere funksjoner.
+
+- Å skrive om en funksjon som tar inn flere argumenter til en funksjon som tar inn ett argument og returnerer en funksjon som tar inn neste argument, osv...
+---
+
+# Currying
+ ---
+- Å skrive en funksjon slik at den kan kalles som en "chain" av flere funksjoner.
+
+- Å skrive om en funksjon som tar inn flere argumenter til en funksjon som tar inn ett argument og returnerer en funksjon som tar inn neste argument, osv...
+
+```ERLANG
+
+  within_range(Hi) ->
+    fun(Lo) ->
+      fun(Num) ->
+        (Num &#60; Hi) and (Num >= Lo)
+      end
+    end.
+
+  ((within_range(10))(3))(7). &#37;&#37; true
+
+```
+---
+
+# Currying
+ ---
+- Å skrive en funksjon slik at den kan kalles som en "chain" av flere funksjoner.
+
+- Å skrive om en funksjon som tar inn flere argumenter til en funksjon som tar inn ett argument og returnerer en funksjon som tar inn neste argument, osv...
+
+```ERLANG
+
+  within_range(Hi) ->
+    fun(Lo) ->
+      fun(Num) ->
+        (Num &#60; Hi) and (Num >= Lo)
+      end
+    end.
+
+  ((within_range(10))(3))(7). &#37;&#37; true
+
+```
+
+ - Bruker closures og lexical scope
+---
+
+# Currying
+ ---
+- Å skrive en funksjon slik at den kan kalles som en "chain" av flere funksjoner.
+
+- Å skrive om en funksjon som tar inn flere argumenter til en funksjon som tar inn ett argument og returnerer en funksjon som tar inn neste argument, osv...
+
+```ERLANG
+
+  within_range(Hi) ->
+    fun(Lo) ->
+      fun(Num) ->
+        (Num &#60; Hi) and (Num >= Lo)
+      end
+    end.
+
+  ((within_range(10))(3))(7). &#37;&#37; true
+
+```
+
+ - Bruker closures og lexical scope
+
+ - Partial application
+
+```ERLANG
+
+  within_range(10)  &#37;&#37; &#35;Fun&#60;...>
+
+```
+---
+
+# Currying
+ ---
+
+ - Språk hvor alle funksjoner er "curried functions" (Haskell, SML, F# ...)
+---
+
+# Currying
+ ---
+
+ - Språk hvor alle funksjoner er "curried functions" (Haskell, SML, F# ...)
+
+```SML
+
+  fun withinRange hi =>
+    fn lo =>
+      fn num =>
+        num &#60;= hi andalso num >= lo
+
+```
+
+---
+
+# Currying
+ ---
+
+ - Språk hvor alle funksjoner er "curried functions" (Haskell, SML, F# ...)
+
+```SML
+
+  fun withinRange hi =>
+    fn lo =>
+      fn num =>
+        num &#60;= hi andalso num >= lo
+
+```
+
+```SML
+
+  // Syntactic sugar:
+
+  fun withinRange hi lo num =>
+    num &#60;= hi andalso num >= lo
+
+```
+---
+
+# Currying
+ ---
+
+ - Språk hvor alle funksjoner er "curried functions" (Haskell, SML, F# ...)
+
+```SML
+
+  fun withinRange hi =>
+    fn lo =>
+      fn num =>
+        num &#60;= hi andalso num >= lo
+
+```
+
+```SML
+
+  // Syntactic sugar:
+
+  fun withinRange hi lo num =>
+    num &#60;= hi andalso num >= lo
+
+  withinRange 5 4 3 // false
+
+```
+---
+
+# Currying
+ ---
+ - Currying og partial application eksempel
+
+```SML
+
+  fun zip xs ys =
+    case (xs,ys) of
+        ([],[]) => []
+      | (x::xs’,y::ys’) => (x,y) :: (zip xs’ ys’)
+      | _ => raise Empty
+
+  fun range i j =
+    if i > j then [] else i :: range (i+1) j
+
+  val countup = range 1
+
+  fun add_numbers liste = zip (countup (length liste)) liste
+
+```
+---
+
+
+
+
+
+---
     </textarea>
     <div id="slideshow"></div>
   </body>

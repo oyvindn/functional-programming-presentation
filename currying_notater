@@ -24,12 +24,11 @@ Currying:
 
     * Syntactic sugar: fun sorted x y z = z >= y andalso y >= x
 
-    - Alle funksjoner har bare et argument i Haskell og SML. Viser eksempler?
+  - Alle funksjoner har bare et argument i Haskell og SML. Viser eksempler?
+
+  -Performance: Avhengig av implementasjonen på språket. I de mest brukte implementasjonene av OCaml, Haskell og F# er curried functions ofte raskere enn tupling. Currying -> standard for multi-arg functions.
 
 
   - Partial application:
-
-    fun range i j = if i > j then [] else i :: range (i+1) j
-
-    val countup = range 1
-
+    * En av fordelene med currying.
+    * Kan returnere en closure, som kan kalles med en gang eller brukes i en annen funksjon.

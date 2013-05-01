@@ -1,0 +1,7 @@
+Eller kansje bare ha disse med i introen? Vet ikke...
+
+- Blir mer og mer vanlig å bruke idiomer fra funksjonell programering i objekt orienterte språk.
+    * Ruby har closures og currying
+    * I Java kan man få til noe som ligner på closures ved å bruke interfaces, og anonyme subklasser
+    * Java 8 skal ha full støtte for closures...
+
