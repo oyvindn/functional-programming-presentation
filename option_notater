@@ -29,7 +29,7 @@ case class Ansatt(navn: String, avdeling: String)
 
 val ansatte: Map[String, Ansatt] = List(Ansatt("Øyvind Nerbråten", "Tech"), Ansatt("Dresskledd Fyr", "BMC")).map(e => (e.navn, e)).toMap
 
-val avdeling: String = ansatte.get("Dressmann")
+val avdeling: String = ansatte.get("Dresskledd Fyr")
   .map(_.avdeling)
   .filter(_ != "BMC")
   .getOrElse("BEKK")

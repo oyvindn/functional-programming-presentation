@@ -27,11 +27,11 @@ class: center, middle
 
   * Closures
 
-  * Options
+  * Option
 
   * Currying
 
-  * List comprehensions
+  * List comprehension
 
 ---
 
@@ -508,17 +508,140 @@ class: center, middle
 
 
 
-<!-- List comprehensions -->
+<!-- List comprehension -->
 
-# List comprehensions
+# List comprehension
  ---
 
 ---
 
-# List comprehensions
+# List comprehension
  ---
 
+- List comprehension er en syntaktisk konstruksjon for å lage en liste basert på eksisterende lister.
 
+---
+
+# List comprehension
+ ---
+
+- List comprehension er en syntaktisk konstruksjon for å lage en liste basert på eksisterende lister.
+
+- I Scala kalles dette for-comprehension og har formen ```for ( seq ) yield expr```, hvor en *seq* kan være en generator, definisjon eller et filter.
+
+```scala
+	for {
+	    p <- persons             // generator
+	    n = p.name               // definisjon
+	    if (n startsWith "To")   // filter
+	} yield n
+```
+
+---
+
+# List comprehension
+ ---
+
+- List comprehension er en syntaktisk konstruksjon for å lage en liste basert på eksisterende lister.
+
+- I Scala kalles dette for-comprehension og har formen ```for ( seq ) yield expr```, hvor en *seq* kan være en generator, definisjon eller et filter.
+
+```scala
+	for {
+	    p <- persons             // generator
+	    n = p.name               // definisjon
+	    if (n startsWith "To")   // filter
+	} yield n
+```
+
+```scala
+	val partall = for {
+	  i <- 0 until 100
+	  if i % 2 == 0
+	} yield i
+```
+
+---
+
+# List comprehension
+ ---
+```scala
+	val fornavn = List("Jens", "Petter", "Arne", "Ola")
+	val etternavn = List("Andersen", "Karlsen", "Oppegård", "Stoltenberg")
+
+	val navnekombinasjoner = for {
+		f <- fornavn
+		e <- etternavn
+		navn = f + " " + e
+		if(navn != "Jens Stoltenberg")
+	} yield navn
+```
+
+---
+
+# List comprehension
+ ---
+- The n-queens problem
+
+```scala
+	def queens(n: Int): List[List[(Int, Int)]] = {
+		def placeQueens(k: Int): List[List[(Int, Int)]] =
+			if (k == 0)
+				List(List())
+		else
+			for {
+				queens <- placeQueens(k - 1)
+				column <- 1 to n
+				queen = (k, column)
+				if isSafe(queen, queens)
+			} yield queen :: queens
+		placeQueens(n)
+	}
+	
+	def isSafe(queen: (Int, Int), queens: List[(Int, Int)]) =
+		queens forall (q => !inCheck(queen, q))
+
+		def inCheck(q1: (Int, Int), q2: (Int, Int)) =
+			q1._1 == q2._1 ||  // same row
+			q1._2 == q2._2 ||  // same column
+			(q1._1 - q2._1).abs == (q1._2 - q2._2).abs // on diagonal
+
+```
+
+---
+
+# List comprehension
+ ---
+- I Scala er for-comprehension syntaktisk sukker for nøstede kall til map, flatMap, og withFilter.
+
+```scala
+	val fornavn = List("Jens", "Petter", "Arne", "Ola")
+	val etternavn = List("Andersen", "Karlsen", "Oppegård", "Stoltenberg")
+	
+	val navnekombinasjoner = for {
+		f <- fornavn
+		e <- etternavn
+		navn = f + " " + e
+		if(navn != "Jens Stoltenberg")
+	} yield navn
+	
+	val navnekombinasjoner2 =
+		fornavn.flatMap(f => etternavn.map(e => f + " " + e))
+			.withFilter(_ != "Jens Stoltenberg")
+```
+
+---
+
+# List comprehension
+ ---
+- For-comprehension er defor ikke bregrenset til lister, men støtter alle datatyper som implementerer filter, map of flatMap.
+
+```scala
+	val avdeling: String = (for {
+		a <- ansatte.get("Dresskledd Fyr")
+		if a.avdeling != "BMC"
+	} yield a.avdeling).getOrElse("BEKK")
+```
 
     </textarea>
     <div id="slideshow"></div>
