@@ -46,6 +46,9 @@ class: center, middle
 - *Referential transparency*
 
 ---
+
+
+
 <!-- Closures -->
 
 # Closures
@@ -208,7 +211,9 @@ class: center, middle
 
 ---
 
-<!-- Options -->
+
+
+<!-- Option -->
 
 # Option
  ---
@@ -232,24 +237,6 @@ class: center, middle
 	case class Some[+A](get: A) extends Option[A]
 	case object None extends Option[Nothing]
 ```
-
----
-
-# Option
- ---
-- Feilhåndtering uten bruk av exceptions
-
-- I Scala er Option implementert som en parameterisert type : Option[A]
-
-```scala
-	sealed trait Option[+A]
-	case class Some[+A](get: A) extends Option[A]
-	case object None extends Option[Nothing]
-```
-
-- Option kan sees på som en liste som kan holde på maksimalt ett element, og som har mye av den samme funksjonaliteten som en liste.
-
-  - map, flatMap, filter, exists, foreach, head, tail, isEmpty, osv...
 
 ---
 
@@ -300,14 +287,35 @@ class: center, middle
 - Støtter også eksplisitt pattern matching
 
 ```scala
-	val minAvdeling: Option[String] =
+	val avdeling: String =
 		ansatteliste.get("Øyvind Nerbråten").map(_.avdeling) match {
 			case Some("BMC") => "Bekk Management Consulting"
 			case Some(x) => x
 			case None => "BEKK"
 		}
-
 ```
+
+---
+
+# Option - Either
+ ---
+- Noen ganger holder det ikke å kun vite at en feil oppsto; vi trenger noen ganger også å vite årsaken.
+
+---
+
+# Option - Either
+ ---
+- Noen ganger holder det ikke å kun vite at en feil oppsto; vi trenger noen ganger også å vite årsaken.
+
+- **Either** har på samme måte som Option kun to muligheter, men denne gangen har begge en verdi.
+
+```scala
+	sealed trait Either[+E, +A]
+	case class Left[+E](value: E) extends Either[E, Nothing]
+	case class Right[+A](value: A) extends Either[Nothing, A]
+```
+
+- Av konvensjon er Left forbeholdt feilsituasjoner.
 
 ---
 
@@ -500,8 +508,18 @@ class: center, middle
 
 
 
+<!-- List comprehensions -->
+
+# List comprehensions
+ ---
 
 ---
+
+# List comprehensions
+ ---
+
+
+
     </textarea>
     <div id="slideshow"></div>
   </body>

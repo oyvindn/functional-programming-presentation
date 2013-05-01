@@ -6,21 +6,30 @@ Option:
 - I Scala er Option implementert som en parameterisert type; Option[A]
 	- Nothing er en subtype av alle typer
 
-- Option er en abstrakt type med 2 muligheter:
-	- Hvis definert : Some
-	- Hvis udefinert : None
+- Option er en abstrakt type med mulig tilfeller:
+	- Kan være definert : Some
+	- Kan være udefinert : None
 
 - Reflekterer muligheten ved at resultatet ikke alltid er definert.
 
 - Ingen flere NullpointerExceptions!
 
-- Monad
-
-- Pattern matching
-
 - Lister : headOption og lastOption
 
+- Either data-typen lar oss sende med med en årsak til feilen som oppsto.
 
-# Haskel:
-- I Haskell kalles option typen for Maybe
-- Definert som Maybe x = Just x | Nothing
+- Option i Haskel:
+	- I Haskell kalles option typen for Maybe
+	- Definert som Maybe x = Just x | Nothing
+
+
+- Eksempelkode: 
+
+case class Ansatt(navn: String, avdeling: String)
+
+val ansatte: Map[String, Ansatt] = List(Ansatt("Øyvind Nerbråten", "Tech"), Ansatt("Dresskledd Fyr", "BMC")).map(e => (e.navn, e)).toMap
+
+val avdeling: String = ansatte.get("Dressmann")
+  .map(_.avdeling)
+  .filter(_ != "BMC")
+  .getOrElse("BEKK")
