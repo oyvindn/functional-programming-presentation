@@ -337,18 +337,20 @@ class: center, middle
 - Options i SML
 
 ```SML
-  fun find_first(xs, f) =
-    case xs of
-        [] => NONE
-      | h::t => if f(h)
-                then SOME h
-                else find_first(t, f)
+  fun find_first ([], _) = NONE
+    | find_first ((h::t), f) =
+        if f(h)
+        then SOME h
+        else find_first (t, f)
+
   ...
 
-  val x = find_first([1, 2, 3, 4, 5], fn x => x > 3)
+  val x = find_first ([1, 2, 3, 4, 5], fn x => x > 3)
   case x of
-        NONE => ...
+        SOME 1 => ...
       | SOME v => ...
+      | NONE => ...
+
   ...
 
 ```
@@ -359,15 +361,16 @@ class: center, middle
  ---
 - Haskell Maybe monad
 
-```haskell
-  add :: Maybe Int -> Maybe Int -> Maybe Int
-  add mx my =
-    case mx of
-      Nothing -> Nothing
-      Just x  -> case my of
-                   Nothing -> Nothing
-                   Just y  -> Just (x + y)
+```Haskell
+  findFirst [] _ = Nothing
+  findFirst (h:t) f =
+    if (f h)
+    then Just h
+    else findFirst t f
 
+  ...
+
+  findFirst [1,2,3,4,5] (\x -> x > 3)
 ```
 
 ---
@@ -517,7 +520,7 @@ class: center, middle
 
 ```SML
 
-  fun withinRange hi =>
+  fun withinRange hi =
     fn lo =>
       fn num =>
         num &#60;= hi andalso num >= lo
@@ -528,7 +531,7 @@ class: center, middle
 
   // Syntactic sugar:
 
-  fun withinRange hi lo num =>
+  fun withinRange hi lo num =
     num &#60;= hi andalso num >= lo
 
   withinRange 5 4 3 // false
